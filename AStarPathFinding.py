@@ -106,8 +106,6 @@ def findPath():
             # update previous node for later traceback if needed
             if neighbor.previous is None:
                 neighbor.previous = current
-
-        current.closed = True
     elif len(openSet) == 0:
         # if there are no more nodes in openSet, and the program has not found the end point, it means there is no path
         # possible due to obstructions
@@ -130,6 +128,9 @@ def findPath():
             if closedSet[i] != start and closedSet[i] != end:
                 closedSet[i].drawNode(green, 0)
 
+    # add current node to closed set
+    current.closed = True
+
 
 # CLASS DEFINITION
 
@@ -145,11 +146,12 @@ class node:
         self.neighbors = []
         self.previous = None
         self.obstruction = False
-        self.closed = False
+        self.closed = False  # used so that nodes are not unnecessarily redrawn
         self.value = 1  # used to calculate cost of path
 
     def drawNode(self, color, style):
         if not self.closed:
+            # draws node if node is not closed (searched)
             pygame.draw.rect(screen, color, (self.i * width, self.j * height, width, height), style)
             pygame.display.update()
 
