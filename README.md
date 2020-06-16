@@ -13,7 +13,7 @@ a python game that serves to visualize the A* search algorithm
     - if you want to see the progress of the algorithm while searching, check the `Show Steps` box
     - click `Submit`
 
-![Image of Settings Window] (images/settings.png)
+![Image of Settings Window](images/settings.png)
 
 4. The start and end points should be displayed on the board
 5. You can now click and drag the mouse on the board to create obstructions for the algorithm
