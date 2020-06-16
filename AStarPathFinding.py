@@ -106,6 +106,8 @@ def findPath():
             # update previous node for later traceback if needed
             if neighbor.previous is None:
                 neighbor.previous = current
+
+        current.closed = True
     elif len(openSet) == 0:
         # if there are no more nodes in openSet, and the program has not found the end point, it means there is no path
         # possible due to obstructions
@@ -127,8 +129,6 @@ def findPath():
         for i in range(len(closedSet)):
             if closedSet[i] != start and closedSet[i] != end:
                 closedSet[i].drawNode(green, 0)
-
-    current.closed = True
 
 
 # CLASS DEFINITION
@@ -164,11 +164,12 @@ class node:
             self.neighbors.append(game_grid[self.i][self.j - 1])
 
 
-# initialize pygame modules
+# initialize pygame modules and display
 pygame.init()
+screen = pygame.display.set_mode((800, 800))
+pygame.display.set_caption('A* Path Finding Visualization')
 
 # initialize used variables
-screen = pygame.display.set_mode((800, 800))
 columns = 50
 grid = [0 for i in range(columns)]
 rows = 50
