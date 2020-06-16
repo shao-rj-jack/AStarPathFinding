@@ -2,6 +2,8 @@
 
 a python game that serves to visualize the A* search algorithm
 
+![GIF of Path Finding](images/pathFinding.gif)
+
 ## Usage
 
 1. Navigate to the directory/folder containing the script with your terminal/console
