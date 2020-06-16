@@ -4,6 +4,7 @@
 # Description: a game that visualizes the A* path finding algorithm
 
 # TODO: account for no path found scenario
+# TODO: make points on border unable to be set as start and end points
 # TODO: fix end being colored after path is found
 # TODO: fix restarting of game
 
