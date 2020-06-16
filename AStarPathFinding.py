@@ -3,7 +3,6 @@
 # File Name: AStarPathFinding.py
 # Description: a game that visualizes the A* path finding algorithm
 
-# TODO: account for no path found scenario
 # TODO: make points on border unable to be set as start and end points
 # TODO: fix end being colored after path is found
 # TODO: fix restarting of game
@@ -107,6 +106,18 @@ def findPath():
             # update previous node for later traceback if needed
             if neighbor.previous is None:
                 neighbor.previous = current
+    elif len(openSet) == 0:
+        # if there are no more nodes in openSet, and the program has not found the end point, it means there is no path
+        # possible due to obstructions
+        Tk().wm_withdraw()
+        result = messagebox.askokcancel('Program Finished',
+                                        'The program finished, there was no path found. \n Would you like to re-run the'
+                                        ' program?')
+
+        if result:
+            os.execl(sys.executable, sys.executable, *sys.argv)
+        else:
+            pygame.quit()
 
     # showSearch checkbox was clicked
     if var.get():
