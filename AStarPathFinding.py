@@ -3,6 +3,10 @@
 # File Name: AStarPathFinding.py
 # Description: a game that visualizes the A* path finding algorithm
 
+# TODO: account for no path found scenario
+# TODO: fix end being colored after path is found
+# TODO: fix restarting of game
+
 import pygame
 import math
 import os
