@@ -10,8 +10,11 @@ a python game that serves to visualize the A* search algorithm
     - enter the coordinates of the start and end points (x, y)
       - (0, 0) is at the top left corner and (49, 49) is at the bottom right corner
       - points on the grey border are part of the grid and invalid points
-    - if you want to see the progress of the algorithm while searching, check the `Show Path` box
+    - if you want to see the progress of the algorithm while searching, check the `Show Steps` box
     - click `Submit`
+
+![Image of Settings Window] (images/settings.png)
+
 4. The start and end points should be displayed on the board
 5. You can now click and drag the mouse on the board to create obstructions for the algorithm
 6. Press space bar to begin the search
