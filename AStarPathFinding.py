@@ -3,7 +3,6 @@
 # File Name: AStarPathFinding.py
 # Description: a game that visualizes the A* path finding algorithm
 
-# TODO: make points on border unable to be set as start and end points
 # TODO: fix end being colored after path is found
 # TODO: fix restarting of game
 
@@ -23,10 +22,25 @@ def onSubmit():
     global end
     start_coords = startBox.get().split(',')
     end_coords = endBox.get().split(',')
-    start = grid[int(start_coords[0])][int(start_coords[1])]
-    end = grid[int(end_coords[0])][int(end_coords[1])]
-    window.quit()
-    window.destroy()
+    # remove any spaces that were entered
+    start_coords[0] = start_coords[0].strip()
+    start_coords[1] = start_coords[1].strip()
+    end_coords[0] = end_coords[0].strip()
+    end_coords[1] = end_coords[1].strip()
+    # check if start/end points are on border
+    if '0' in start_coords or '0' in end_coords or '49' in start_coords or '49' in end_coords:
+        retry = messagebox.askretrycancel('Invalid Start/End Points',
+                                          'Your start and/or end point is on the border.\n'
+                                          'Please enter new coordinates.')
+        if not retry:
+            window.quit()
+            window.destroy()
+            pygame.quit()
+    else:
+        start = grid[int(start_coords[0])][int(start_coords[1])]
+        end = grid[int(end_coords[0])][int(end_coords[1])]
+        window.quit()
+        window.destroy()
 
 
 def onMousePress(mouse_position):
@@ -111,8 +125,8 @@ def findPath():
         # possible due to obstructions
         Tk().wm_withdraw()
         result = messagebox.askokcancel('Program Finished',
-                                        'The program finished, there was no path found. \n Would you like to re-run the'
-                                        ' program?')
+                                        'The program finished, there was no path found.\n'
+                                        'Would you like to re-run the program?')
 
         if result:
             os.execl(sys.executable, sys.executable, *sys.argv)
