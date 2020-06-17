@@ -3,7 +3,6 @@
 # File Name: AStarPathFinding.py
 # Description: a game that visualizes the A* path finding algorithm
 
-# TODO: fix end being colored after path is found
 # TODO: fix restarting of game
 
 import pygame
@@ -84,6 +83,7 @@ def findPath():
                 current.closed = False
                 current.drawNode(blue, 0)
                 current = current.previous
+            end.drawNode(purple, 0)
 
             Tk().wm_withdraw()
             result = messagebox.askokcancel('Program Finished',
