@@ -3,8 +3,6 @@
 # File Name: AStarPathFinding.py
 # Description: a game that visualizes the A* path finding algorithm
 
-# TODO: fix restarting of game
-
 import pygame
 import math
 import os
@@ -89,7 +87,6 @@ def findPath():
             result = messagebox.askokcancel('Program Finished',
                                             'The program finished, the shortest path is %s blocks away. \n Would you '
                                             'like to re-run the program?' % round(current.f))
-
             if result:
                 os.execl(sys.executable, sys.executable, *sys.argv)
             else:
@@ -127,7 +124,6 @@ def findPath():
         result = messagebox.askokcancel('Program Finished',
                                         'The program finished, there was no path found.\n'
                                         'Would you like to re-run the program?')
-
         if result:
             os.execl(sys.executable, sys.executable, *sys.argv)
         else:
