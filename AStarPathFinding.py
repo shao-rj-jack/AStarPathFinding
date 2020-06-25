@@ -15,7 +15,7 @@ from tkinter import messagebox
 
 
 class node:
-    """class definition of nodes on the board"""
+    """Class definition of nodes on the board."""
     def __init__(self, x, y):
         self.i = x
         self.j = y
@@ -49,7 +49,7 @@ class node:
 
 
 def onSubmit():
-    """button function to retrieve text from window entries"""
+    """Button function to retrieve text from window entries."""
     global start
     global end
     start_coords = startBox.get().split(',')
@@ -77,7 +77,7 @@ def onSubmit():
 
 
 def onMousePress(mouse_position):
-    """function that handles clicking of the board to turn empty squares into obstructions"""
+    """Function that handles clicking of the board to turn empty squares into obstructions."""
     mouse_x = mouse_position[0]
     mouse_y = mouse_position[1]
     grid_x = mouse_x // (800 // columns)
@@ -95,12 +95,12 @@ def heuristic(node_1, node_2):
 
 
 def findPath():
-    """the main path finding algorithm
-    it uses the the equation f = g + h (variables defined in the node class) to determine the total cost of the node
-    to see which node is the best to search
-    the algorithm ends if the end point is added to closedSet (path found) or no end is found and openSet is empty
-    (no path available)
-    it also handles the drawing of the search"""
+    """The main path finding algorithm.
+    It uses the the equation f = g + h (variables defined in the node class) to determine the total cost of the node
+    to see which node is the best to search.
+    The algorithm ends if the end point is added to closedSet (path found) or no end is found and openSet is empty
+    (no path available).
+    It also handles the drawing of the search path."""
 
     # searches every node in the open set for the best node to search
     if len(openSet) > 0:
