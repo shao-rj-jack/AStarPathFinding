@@ -276,7 +276,7 @@ for i in range(columns):
     for j in range(rows):
         grid[i][j].addNeighbors(grid)
 
-# loop that calls path finding algorithmG
+# loop that calls path finding algorithm
 while True:
     event = pygame.event.poll()
     if event.type == pygame.QUIT:
