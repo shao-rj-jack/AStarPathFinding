@@ -10,6 +10,41 @@ from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
 
+
+# CLASS DEFINITION
+
+
+class node:
+    # class definition of nodes on the board
+    def __init__(self, x, y):
+        self.i = x
+        self.j = y
+        self.f = 0  # total cost of the node
+        self.g = 0  # distance between current node and start node
+        self.h = 0  # heuristic - distance from current node to end node
+        self.neighbors = []
+        self.previous = None
+        self.obstruction = False
+        self.closed = False  # used so that nodes are not unnecessarily redrawn
+        self.value = 1  # used to calculate cost of path
+
+    def drawNode(self, color, style):
+        if not self.closed:
+            # draws node if node is not closed (searched)
+            pygame.draw.rect(screen, color, (self.i * width, self.j * height, width, height), style)
+            pygame.display.update()
+
+    def addNeighbors(self, game_grid):
+        if self.i < columns - 1 and not game_grid[self.i + 1][self.j].obstruction:
+            self.neighbors.append(game_grid[self.i + 1][self.j])
+        if self.i > 0 and not game_grid[self.i - 1][self.j].obstruction:
+            self.neighbors.append(game_grid[self.i - 1][self.j])
+        if self.j < rows - 1 and not game_grid[self.i][self.j + 1].obstruction:
+            self.neighbors.append(game_grid[self.i][self.j + 1])
+        if self.j > 0 and not game_grid[self.i][self.j - 1].obstruction:
+            self.neighbors.append(game_grid[self.i][self.j - 1])
+
+
 # FUNCTION DEFINITIONS
 
 
@@ -143,40 +178,6 @@ def findPath():
 
     # add current node to closed set
     current.closed = True
-
-
-# CLASS DEFINITION
-
-
-class node:
-    # class definition of nodes on the board
-    def __init__(self, x, y):
-        self.i = x
-        self.j = y
-        self.f = 0  # total cost of the node
-        self.g = 0  # distance between current node and start node
-        self.h = 0  # heuristic - distance from current node to end node
-        self.neighbors = []
-        self.previous = None
-        self.obstruction = False
-        self.closed = False  # used so that nodes are not unnecessarily redrawn
-        self.value = 1  # used to calculate cost of path
-
-    def drawNode(self, color, style):
-        if not self.closed:
-            # draws node if node is not closed (searched)
-            pygame.draw.rect(screen, color, (self.i * width, self.j * height, width, height), style)
-            pygame.display.update()
-
-    def addNeighbors(self, game_grid):
-        if self.i < columns - 1 and not game_grid[self.i + 1][self.j].obstruction:
-            self.neighbors.append(game_grid[self.i + 1][self.j])
-        if self.i > 0 and not game_grid[self.i - 1][self.j].obstruction:
-            self.neighbors.append(game_grid[self.i - 1][self.j])
-        if self.j < rows - 1 and not game_grid[self.i][self.j + 1].obstruction:
-            self.neighbors.append(game_grid[self.i][self.j + 1])
-        if self.j > 0 and not game_grid[self.i][self.j - 1].obstruction:
-            self.neighbors.append(game_grid[self.i][self.j - 1])
 
 
 # initialize pygame modules and display
