@@ -33,6 +33,7 @@ def onSubmit():
             window.quit()
             window.destroy()
             pygame.quit()
+            quit()
     else:
         start = grid[int(start_coords[0])][int(start_coords[1])]
         end = grid[int(end_coords[0])][int(end_coords[1])]
@@ -91,6 +92,7 @@ def findPath():
                 os.execl(sys.executable, sys.executable, *sys.argv)
             else:
                 pygame.quit()
+                quit()
 
         # removes current node from openSet and add it to closedSet
         openSet.pop(lowest_index)
@@ -128,6 +130,7 @@ def findPath():
             os.execl(sys.executable, sys.executable, *sys.argv)
         else:
             pygame.quit()
+            quit()
 
     # showSearch checkbox was clicked
     if var.get():
@@ -260,6 +263,7 @@ while loop:
     for event in events:
         if event.type == pygame.QUIT:
             pygame.quit()
+            quit()
         if pygame.mouse.get_pressed()[0]:
             position = pygame.mouse.get_pos()
             onMousePress(position)
@@ -277,5 +281,6 @@ while True:
     event = pygame.event.poll()
     if event.type == pygame.QUIT:
         pygame.quit()
+        quit()
     pygame.display.update()
     findPath()
