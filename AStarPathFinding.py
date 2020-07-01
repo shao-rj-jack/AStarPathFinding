@@ -76,8 +76,8 @@ def onSubmit():
         window.destroy()
 
 
-def onMousePress(mouse_position):
-    """Function that handles clicking of the board to turn empty squares into obstructions."""
+def onMousePressLeft(mouse_position):
+    """Function that handles left clicking of the board to turn empty squares into obstructions."""
     mouse_x = mouse_position[0]
     mouse_y = mouse_position[1]
     grid_x = mouse_x // (800 // columns)
@@ -87,6 +87,20 @@ def onMousePress(mouse_position):
         if not node_clicked.obstruction:
             node_clicked.drawNode(grey, 0)
             node_clicked.obstruction = True
+
+
+def onMousePressRight(mouse_position):
+    """Function that handles right clicking of the board to turn obstructions into empty squares."""
+    mouse_x = mouse_position[0]
+    mouse_y = mouse_position[1]
+    grid_x = mouse_x // (800 // columns)
+    grid_y = mouse_y // (800 // rows)
+    node_clicked = grid[grid_x][grid_y]
+    if node_clicked != start and node_clicked != end:
+        if node_clicked.obstruction:
+            node_clicked.drawNode(black, 0)
+            node_clicked.drawNode(white, 1)
+            node_clicked.obstruction = False
 
 
 def heuristic(node_1, node_2):
@@ -196,7 +210,8 @@ green = (0, 255, 0)
 blue = (0, 0, 255)
 grey = (220, 220, 220)
 purple = (255, 8, 200)
-black = (255, 255, 255)
+white = (255, 255, 255)
+black = (0, 0, 0)
 width = 800 / columns
 height = 800 / rows
 
@@ -216,7 +231,7 @@ end = grid[48][48]
 # draw all nodes
 for i in range(columns):
     for j in range(rows):
-        grid[i][j].drawNode(black, 1)
+        grid[i][j].drawNode(white, 1)
 
 # draw borders
 for i in range(rows):
@@ -267,7 +282,10 @@ while loop:
             quit()
         if pygame.mouse.get_pressed()[0]:
             position = pygame.mouse.get_pos()
-            onMousePress(position)
+            onMousePressLeft(position)
+        if pygame.mouse.get_pressed()[2]:
+            position = pygame.mouse.get_pos()
+            onMousePressRight(position)
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
                 loop = False
