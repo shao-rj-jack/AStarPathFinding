@@ -18,5 +18,6 @@ a python game that serves to visualize the A* search algorithm
 ![Image of Settings Window](images/settings.png)
 
 4. The start and end points should be displayed on the board
-5. You can now click and drag the mouse on the board to create obstructions for the algorithm
+5. You can now left click and drag the mouse on the board to create obstructions for the algorithm
+    - To remove created obstructions, use right click in the same manner
 6. Press space bar to begin the search
